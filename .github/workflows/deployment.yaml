@@ -45,14 +45,14 @@ jobs:
             uses: docker/login-action@v2
             with:
               username: ${{ secrets.DOCKERHUB_USERNAME }}
-              password: ${{ secrets.DOCKERHUB_TOKEN }}
+              password: ${{ secrets.DOCKERHUB_PASSWORD }}
           -
             name: Build and push
             uses: docker/build-push-action@v4
             with:
               context: .
               push: true
-              tags: tanmay238/images:app-${{ github.run_number }}
+              tags: ohiani/images:app-${{ github.run_number }}
   modifygit:
     needs: docker
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
-          repository: 'ohiani/argoCD/Kubernetes'
+          repository: 'ohiani/Manifest-Flask'
           token: ${{ secrets.GIT_PASSWORD }}
       - name: modify the image
         run: |
@@ -69,7 +69,7 @@ jobs:
           pwd
           cat deployment.yaml
           pwd
-          sed -i "s+tanmay238/images.*+tanmay238/images:app-$RUN_NUMBER+g" deployment.yaml
+          sed -i "s+ohiani/images.*+ohiani/images:app-$RUN_NUMBER+g" deployment.yaml
           cat deployment.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
