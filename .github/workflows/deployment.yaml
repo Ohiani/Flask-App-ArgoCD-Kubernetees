@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
-          repository: 'ohiani/Flask-App'
+          repository: 'ohiani/Manifest-Flask'
           token: ${{ secrets.GIT_PASSWORD }}
       - name: modify the image
         run: |
@@ -72,7 +72,7 @@ jobs:
           sed -i "s+ohiani/images.*+ohiani/images:app-$RUN_NUMBER+g" deployment.yaml
           cat deployment.yaml
           git add .
-          git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
+          git commit -m 'Done  by Github Actions Job changemanifest: ${{ github.run_number }}'
           git push origin main
         env:
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
