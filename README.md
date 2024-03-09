@@ -35,7 +35,7 @@ ArgoCD uses the updated deployment manifests from this workflow to deploy the ap
 - Deploy your kubernetes Cluster 
 for this project we will be create an azure kubernetes cluster
 
-![](./Images/AKS.png)
+![testimage](./Images/AKS.png)
 
 -  Install ArgoCD in your Kubernetes Cluster
 
